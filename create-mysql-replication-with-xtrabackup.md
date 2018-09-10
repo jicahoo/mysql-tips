@@ -23,10 +23,11 @@ binlog_do_db            = newdatabase                      # The database you wa
 * sudo xtrabackup --prepare --user=root --password=123456 --target-dir=backupdir
 备份的目录中, xtrabackup_info文件包含一些重要信息，在配置远程复制的过程中，需要用到，如下：
 
-···
+```
 >sudo cat /var/lib/mysql/xtrabackup_info
-
+'''
 mysql-bin.000003', position '154'             <<<<注意这条信息
+'''
 
 ```
 
