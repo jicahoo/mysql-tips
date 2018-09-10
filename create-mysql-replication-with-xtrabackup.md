@@ -59,7 +59,8 @@ binlog_do_db            = newdatabase
 GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%' IDENTIFIED BY 'slavepassword';
 flush privileges;
 ```
-2. 在从库上，配置主库的连接信息，并启动远程复制连接
+2. 在从库上，配置主库的连接信息，并启动远程复制连接。
+* 下面命令中的参数 mysql-bin.000003和154都是来自xtrabackup的输出文件xtrabackup_info, 参见上面的相关步骤。
 ```
 CHANGE MASTER TO MASTER_HOST='172.16.1.4',MASTER_USER='repl', MASTER_PASSWORD='slavepassword', MASTER_LOG_FILE='mysql-bin.000003', MASTER_LOG_POS=  154;
 START SLAVE;
