@@ -7,6 +7,7 @@
  
 # 步骤:
 * 整个操作分两个部分，一个部分就是备份，将主数据库的数据备份，并恢复到从数据库；第二个部分，就是在主数据库和从数据库之间，建立复制会话。
+## 第一部分，备份主数据库，并恢复到从数据库
 1. sudo xtrabackup --backup --user=root --password=123456 --target-dir=backupdir && sudo xtrabackup --prepare --user=root --password=123456 --target-dir=backupdir 
 
 # 
