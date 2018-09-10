@@ -30,6 +30,17 @@ mysql-bin.000003', position '154'             <<<<注意这条信息
 ...
 ```
 
-3. 
+3. 将数据恢复到从数据库:
+* 想办法将主数据库导出的文件夹backupdir， 复制到从数据库的服务器上。下文中，我们假设，已经复制到目录:/home/ubuntu/backupdir
+* 停止从数据库的mysql服务: `sudo service mysql stop`
+* 创建出一个空的datadir，以便恢复数据，具体方法是:
+ * `sudo mv /var/lib/mysql /var/lib/mysql.bak`
+ * `sudo mkdir /var/lib/mysql`
+* 使用xtrabackup恢复到datadir: /var/lib/mysql. 命令如下：
+ * `sudo xtrabackup --copy-back --target-dir=/home/ubuntu/backupdir`
+ * `sudo chown -R mysql:mysql /var/lib/mysql`
+
+
+
 
 
