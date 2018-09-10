@@ -10,10 +10,10 @@
 ## 第一部分，备份主数据库，并恢复到从数据库
 1. 为了主从之间能够远程复制， 在备份主数据库之前，要更改一些配置（如果已经满足这些配置要求，则不需做任何改动。）
 ```
-bind-address            = 0.0.0.0 #Make sure slave can connect the sql service via TCP/IP. 
-server-id               = 1   #uniq id
-log_bin                 = /var/log/mysql/mysql-bin.log #Enable the bin log. Replication needs it
-binlog_do_db            = newdatabase   #The database you want to sync
+bind-address            = 0.0.0.0                          # Make sure slave can connect the sql service via TCP/IP. 
+server-id               = 1                                # uniq id
+log_bin                 = /var/log/mysql/mysql-bin.log     # Enable the bin log. Replication needs it
+binlog_do_db            = newdatabase                      # The database you want to sync
 ```
 * 配置改好后，需要重启mysql:`sudo service mysql restart`
 
