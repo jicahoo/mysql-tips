@@ -25,9 +25,9 @@ binlog_do_db            = newdatabase                      # The database you wa
 
 ···
 >sudo cat /var/lib/mysql/xtrabackup_info
-...
+
 mysql-bin.000003', position '154'             <<<<注意这条信息
-...
+
 ```
 
 3. 
