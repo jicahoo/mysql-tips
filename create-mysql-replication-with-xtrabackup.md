@@ -18,9 +18,18 @@ binlog_do_db            = newdatabase                      # The database you wa
 * 配置改好后，需要重启mysql:`sudo service mysql restart`
 
 2. 备份主数据库
-，第一条命令的输出可能是不一致的数据,所以，需要第二条的命令，确保数据一致性。 backupdir是个用户指定的目录.
-
+第一条命令的输出可能是不一致的数据, 以，需要第二条的命令，确保数据一致性。 backupdir是个用户指定的目录.
 * sudo xtrabackup --backup --user=root --password=123456 --target-dir=backupdir
-* sudo xtrabackup --prepare --user=root --password=123456 --target-dir=backupdir 
+* sudo xtrabackup --prepare --user=root --password=123456 --target-dir=backupdir
+备份的目录中, xtrabackup_info文件包含一些重要信息，在配置远程复制的过程中，需要用到，如下：
+···
+>sudo cat /var/lib/mysql/xtrabackup_info
+...
+mysql-bin.000003', position '154'             <<<<注意这条信息
+...
+
+···
+
+3. 
 
 
