@@ -7,6 +7,7 @@
  
 # 步骤:
 * 整个操作分两个部分，一个部分就是备份，将主数据库的数据备份，并恢复到从数据库；第二个部分，就是在主数据库和从数据库之间，建立复制会话。
+
 ## 第一部分，备份主数据库，并恢复到从数据库
 1. **更改主数据库配置（如果需要）** 
 为了主从之间能够远程复制， 在备份主数据库之前，要更改一些配置（如果已经满足这些配置要求，则不需做任何改动。）
@@ -40,6 +41,33 @@ mysql-bin.000003', position '154'             <<<<注意这条信息
 * 使用xtrabackup恢复到datadir: /var/lib/mysql. 命令如下：
   * `sudo xtrabackup --copy-back --target-dir=/home/ubuntu/backupdir`
   * `sudo chown -R mysql:mysql /var/lib/mysql`
+* 更改或添加mysql配置:
+
+···
+server-id               = 2
+relay-log               = /var/log/mysql/mysql-relay-bin.log
+log_bin                 = /var/log/mysql/mysql-bin.log
+binlog_do_db            = newdatabase
+···
+* 启动从数据库： `sudo service mysql start`
+
+## 第二部分，配置远程复制
+* 环境信息：
+  * 主库服务器地址：172.16.1.4
+1. 在主库上，配置用于远程复制的用户信息
+```
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%' IDENTIFIED BY 'slavepassword';
+flush privileges;
+```
+2. 在从库上，配置主库的连接信息，并启动远程复制连接
+```
+CHANGE MASTER TO MASTER_HOST='172.16.1.4',MASTER_USER='repl', MASTER_PASSWORD='slavepassword', MASTER_LOG_FILE='mysql-bin.000003', MASTER_LOG_POS=  154;
+START SLAVE;
+SHOW SLAVE STATUS\G
+```
+
+
+
 
 
 
