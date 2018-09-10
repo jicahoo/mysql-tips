@@ -15,6 +15,7 @@ server-id               = 1   #uniq id
 log_bin                 = /var/log/mysql/mysql-bin.log #Enable the bin log. Replication needs it
 binlog_do_db            = newdatabase   #The database you want to sync
 ```
+* 配置改好后，需要重启mysql:`sudo service mysql restart`
 
 2. 备份主数据库
 ，第一条命令的输出可能是不一致的数据,所以，需要第二条的命令，确保数据一致性。 backupdir是个用户指定的目录.
