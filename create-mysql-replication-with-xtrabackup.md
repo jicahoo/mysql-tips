@@ -42,13 +42,13 @@ mysql-bin.000003', position '154'             <<<<注意这条信息
   * `sudo xtrabackup --copy-back --target-dir=/home/ubuntu/backupdir`
   * `sudo chown -R mysql:mysql /var/lib/mysql`
 * 更改或添加mysql配置:
-
-···
+```
 server-id               = 2
 relay-log               = /var/log/mysql/mysql-relay-bin.log
 log_bin                 = /var/log/mysql/mysql-bin.log
 binlog_do_db            = newdatabase
-···
+```
+
 * 启动从数据库： `sudo service mysql start`
 
 ## 第二部分，配置远程复制
