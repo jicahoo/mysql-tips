@@ -8,6 +8,17 @@
 # 步骤:
 * 整个操作分两个部分，一个部分就是备份，将主数据库的数据备份，并恢复到从数据库；第二个部分，就是在主数据库和从数据库之间，建立复制会话。
 ## 第一部分，备份主数据库，并恢复到从数据库
-1. sudo xtrabackup --backup --user=root --password=123456 --target-dir=backupdir && sudo xtrabackup --prepare --user=root --password=123456 --target-dir=backupdir 
+1. 为做复制， 在备份主数据库之前，要更改一些配置（如果已经满足这些配置要求，则不需做任何改动。）
+'''
+bind-address            = 0.0.0.0 #Make sure slave can connect the sql service via TCP/IP. 
+server-id               = 1   #uniq id
+log_bin                 = /var/log/mysql/mysql-bin.log #Enable the bin log. Replication needs it
+binlog_do_db            = newdatabase   #The database you want to sync
+'''
 
-# 
+2. 做备份的两条命令
+第二条的命令是确保数据一致性，第一条命令的输出可能是不一致的数据。 backupdir是个用户指定的目录.
+
+* sudo xtrabackup --backup --user=root --password=123456 --target-dir=backupdir
+* sudo xtrabackup --prepare --user=root --password=123456 --target-dir=backupdir 
+
