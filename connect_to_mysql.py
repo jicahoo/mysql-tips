@@ -2,6 +2,7 @@
 #!/usr/bin/python
 import MySQLdb
 
+# sudo apt-get install python-mysqldb
 
 def gen_insert_sql(size):
     sql = "INSERT INTO world (device,temperature,high) values "
