@@ -5,5 +5,7 @@
 * uninstall: https://linuxscriptshub.com/uninstall-completely-remove-mysql-ubuntu-16-04/
 
 # python to mysql
+* Fast pytho to mysql: mysqlclient
+* https://stackoverflow.com/questions/43102442/whats-the-difference-between-mysqldb-mysqlclient-and-mysql-connector-python
 * https://stackoverflow.com/questions/372885/how-do-i-connect-to-a-mysql-database-in-python
 * https://pypi.org/project/mysql-connector-python/
