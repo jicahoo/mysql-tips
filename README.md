@@ -6,3 +6,4 @@
 
 # python to mysql
 * https://stackoverflow.com/questions/372885/how-do-i-connect-to-a-mysql-database-in-python
+* https://pypi.org/project/mysql-connector-python/
